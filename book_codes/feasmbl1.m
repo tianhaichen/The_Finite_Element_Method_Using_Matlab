@@ -8,7 +8,7 @@ function [kk]=feasmbl1(kk,k,index)
 %
 %  Variable Description:
 %     kk - system matrix
-%     k  - element matri
+%     k  - element matrix
 %     index - d.o.f. vector associated with an element
 %-----------------------------------------------------------
 
