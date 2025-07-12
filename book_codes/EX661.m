@@ -22,7 +22,7 @@
 %   dhdx - derivatives of shape functions w.r.t. physical coord. x
 %   dhdy - derivatives of shape functions w.r.t. physical coord. y
 %-----------------------------------------------------------------------------            
-
+clc
 clear
 nnel=4;                               % number of nodes per element
 ndof=1;                               % degrees of freedom per node
@@ -48,10 +48,10 @@ for inty=1:ngly
 y=point2(inty,2);                  % sampling point in y-axis
 wty=weight2(inty,2) ;              % weight in y-axis
 
-[shape,dhdr,dhds]=feisoq4(x,y); % compute shape functions and
+[shape,dhdr,dhds]=feisoq4(x,y) % compute shape functions and
                                       % derivatives at sampling point
 
-jacob2=fejacob2(nnel,dhdr,dhds,xcoord,ycoord)  % compute Jacobian
+jacob2=fejacob2(nnel,dhdr,dhds,xcoord,ycoord);  % compute Jacobian
 
 detjacob=det(jacob2);                 % determinant of Jacobian
 invjacob=inv(jacob2);                 % inverse of Jacobian matrix

@@ -31,7 +31,7 @@ shapeq4(4)=0.25*(1-rvalue)*(1+svalue);
 dhdrq4(1)=-0.25*(1-svalue);
 dhdrq4(2)=0.25*(1-svalue);
 dhdrq4(3)=0.25*(1+svalue);
-dhdrq4(4)=0.25*(1+svalue);
+dhdrq4(4)=-0.25*(1+svalue);
 
 dhdsq4(1)=-0.25*(1-rvalue);
 dhdsq4(2)=-0.25*(1+rvalue);

@@ -48,7 +48,7 @@ for intx = 1:nglx
        y=point2(inty,2);
        wty=weight2(inty,2);     % sampling point,weight in y-axis
        
-       [shape,dhdr,dhds]=feisoq4(x,y);  % compute shape functions and 
+       [shape,dhdr,dhds]=feisoq4(x,y) % compute shape functions and 
        % derivatives at sampling point
        jacob2=fejacob2(nnel,dhdr,dhds,xcoord,ycoord); % compute jacobian
        
