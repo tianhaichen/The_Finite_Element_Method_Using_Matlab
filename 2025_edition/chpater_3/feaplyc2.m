@@ -18,7 +18,7 @@ function [kk,ff] = feaplyc2(kk,ff,bcdof,bcval)
 %	and bcval(1)=1.0 and bcval(2)=2.5.
 
 n=length(bcdof);
-sdof = size(kk);
+sdof = size(kk,1);
 
 for i=1:n
 	c = bcdof(i);

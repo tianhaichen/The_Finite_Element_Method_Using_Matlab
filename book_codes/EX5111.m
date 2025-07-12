@@ -110,20 +110,20 @@ index=zeros(nnel*ndof,1);  % initialization of index vector
 
 for iel=1:nel           % loop for the total number of elements
 
-nd(1)=nodes(iel,1); % 1st connected node for (iel)-th element
-nd(2)=nodes(iel,2); % 2nd connected node for (iel)-th element
-nd(3)=nodes(iel,3); % 3rd connected node for (iel)-th element
-x1=gcoord(nd(1),1); y1=gcoord(nd(1),2);% coord values of 1st node
-x2=gcoord(nd(2),1); y2=gcoord(nd(2),2);% coord values of 2nd node
-x3=gcoord(nd(3),1); y3=gcoord(nd(3),2);% coord values of 3rd node
+	nd(1)=nodes(iel,1); % 1st connected node for (iel)-th element
+	nd(2)=nodes(iel,2); % 2nd connected node for (iel)-th element
+	nd(3)=nodes(iel,3); % 3rd connected node for (iel)-th element
+	x1=gcoord(nd(1),1); y1=gcoord(nd(1),2);% coord values of 1st node
+	x2=gcoord(nd(2),1); y2=gcoord(nd(2),2);% coord values of 2nd node
+	x3=gcoord(nd(3),1); y3=gcoord(nd(3),2);% coord values of 3rd node
 
-index=feeldof(nd,nnel,ndof);% extract system dofs associated with element
+	index=feeldof(nd,nnel,ndof);% extract system dofs associated with element
 
-k=felp2dt3(x1,y1,x2,y2,x3,y3); % compute element matrix
-m=felpt2t3(x1,y1,x2,y2,x3,y3); % compute element matrix
+	k=felp2dt3(x1,y1,x2,y2,x3,y3); % compute element matrix
+	m=felpt2t3(x1,y1,x2,y2,x3,y3); % compute element matrix
 
-kk=feasmbl1(kk,k,index);  % assemble element matrices 
-mm=feasmbl1(mm,m,index);  % assemble element matrices 
+	kk=feasmbl1(kk,k,index);  % assemble element matrices 
+	mm=feasmbl1(mm,m,index);  % assemble element matrices 
 
 end
 
