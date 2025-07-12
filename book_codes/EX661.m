@@ -51,7 +51,7 @@ wty=weight2(inty,2) ;              % weight in y-axis
 [shape,dhdr,dhds]=feisoq4(x,y); % compute shape functions and
                                       % derivatives at sampling point
 
-jacob2=fejacob2(nnel,dhdr,dhds,xcoord,ycoord);  % compute Jacobian
+jacob2=fejacob2(nnel,dhdr,dhds,xcoord,ycoord)  % compute Jacobian
 
 detjacob=det(jacob2);                 % determinant of Jacobian
 invjacob=inv(jacob2);                 % inverse of Jacobian matrix
