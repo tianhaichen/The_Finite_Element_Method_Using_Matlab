@@ -20,7 +20,7 @@ function [kk,ff]=feaplyc2(kk,ff,bcdof,bcval)
 %-----------------------------------------------------------
  
  n=length(bcdof);
- sdof=size(kk);
+ sdof=size(kk,1);
 
  for i=1:n
     c=bcdof(i);

@@ -26,7 +26,7 @@
 %---------------------------
 %  control input data
 %---------------------------
-
+clc
 clear
 nel=2;           % number of elements
 nnel=2;          % number of nodes per element

@@ -15,7 +15,7 @@ function [k,m]=fetruss2(el,leng,area,rho,beta,ipt)
 %     leng - element length
 %     area - area of truss cross-section
 %     rho - mass density (mass per unit volume)
-%     beta - angle between the local and global axes                                 ipt = 1: consistent mass matrix
+%     beta - angle between the local and global axes                      
 %            positive if the local axis is in the ccw direction from
 %            the global axis
 %     ipt = 1 - consistent mass matrix
