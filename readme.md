@@ -16,3 +16,12 @@ Launch MATLAB and open files from CD.
 
 Technical Support:
 If you have problems with this product please contact our technical support department at 561-361-6066 or techsupport@crcpress.com
+
+
+--------------------------------------------------------------------------
+git 常用命令
+!git status                         check file status
+!git add .                          add new files
+!git commit -m "commit your codes"
+!git pull
+!git push
