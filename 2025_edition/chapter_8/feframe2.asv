@@ -1,0 +1,76 @@
+function [k,m] = feframe2(el,xi,leng,area,rho,beta,ipt)
+% -----------------------------------------------------------------------
+% Purpose:
+%   Stiffness and mass matrices for the 2-d frame element
+%     nodal dof {u_1 v_1 theta_1 u_2 v_2 theta_2}
+%
+% Synopsis:
+%   [k,m] = = feframe2(el,xi,leng,area,rho,beta,ipt)
+%
+% Variable Description:
+%   k = element stiffness matrix (size of 4x4)
+%   m = element mass matrix (size of 4x4)
+%   el = elastic modulus
+%   xi = second moment of inertia of cross-section
+%   leng = element length
+%   area = area of beam cross-section
+%   rho = mass density (mass per unit volume)
+%   ipt = 1: consistent mass matrix
+%         2: lumped mass matrix
+%         ohterwise: diagonal mass matrix
+%________________________________________________________________________
+
+% stiffness matrix
+a=el/leng^3;
+k11 =area*leng^2;
+k14=-k11;
+k22 = 12*xi;
+k23 = 6*leng*xi;
+k25 = -k12;
+k26 = k13;
+k32 = k23;
+k33=4*xi*leng^2;
+k35=-k23;
+k36=2*xi*leng^2;
+k41=-k11;
+k44=k11;
+k52=-k22;
+k53=k23;
+k55=k22;
+k56=-k23;
+k62=k23;
+k63=k36;
+k65=-k23;
+k66=k33;
+k=a*[k11 0 -k11 k12;
+    k12 k22 -k12 k24;
+    -k11 -k12 k11 -k12;
+    k12 k24 -k12 k22];
+
+% consistent mass matrix 
+if ipt ==1
+mm=rho*area*leng/420;
+m11 = 156;
+m12 = 22*leng;
+m13 = 54;
+m14 = -13*leng;
+m22 = 4*leng^2;
+m24 = -3*leng^2;
+m = mm*[m11 m12 m13 m14;
+        m12 m22 -m14 m24;
+        m13 -m14 m11 -m12;
+        m14 m22 -m12 m22];
+%
+% lumper mass matrix
+elseif ipt ==2
+    m=zeros(4,4);
+    mass=rho*area*leng;
+    m=diag(mass/2*[1 0 1 0])
+%
+% diagonal mass matrix
+else
+    m=zeros(4,4);
+    mass=rho*area*leng/78;
+    m=diag(mass*[39 leng^2 39 leng^2]);
+end
+end
