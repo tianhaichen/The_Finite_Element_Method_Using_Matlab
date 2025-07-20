@@ -65,7 +65,7 @@ mm=feasmbl1(mm,m,index); % assemble each element matrix into system matrix
 
 end
 
-mminv=inv(mm);        % invert the mass matrix
+mminv=inv(mm);       % invert the mass matrix
 
 % central difference scheme for time integration
 

@@ -17,7 +17,7 @@
 %   index = a vector containing system dofs associated with each element     %
 %   bcdof = a vector containing dofs associated with boundary conditions     %
 %----------------------------------------------------------------------------% 
-
+clc
 clear
 nel=4;           % number of elements
 nnel=2;          % number of nodes per element
@@ -53,7 +53,7 @@ mm=feasmbl1(mm,m,index); % assemble each element matrix into system matrix
 
 end
 
-[kn,mn]=feaplycs(kk,mm,bcdof);  % apply the boundary conditions
+[kn,mn]=feaplycs(kk,mm,bcdof)  % apply the boundary conditions
 
 fsol=eig(kn,mn);   % solve the matrix equation and print
 fsol=sqrt(fsol)

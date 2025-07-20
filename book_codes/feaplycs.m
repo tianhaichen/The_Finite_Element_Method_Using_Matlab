@@ -15,7 +15,7 @@ function [kk,mm]=feaplycs(kk,mm,bcdof)
 %---------------------------------------------------------------------
  
  n=length(bcdof);
- sdof=size(kk);
+ sdof=size(kk,1);
  
  for i=1:n
     c=bcdof(i);
