@@ -4,20 +4,17 @@ function [k,m] = febeam3(el,sh,leng,heig,width,rho)
 %   Stiffness and mass matrices for beam element with displacement dof only
 %   nodal dof    (u_1^b u_1^t v_1 u_2^b u_2^t v_2)
 % Synopsis:
-%   [k,m] = = febeam3(el,xi,leng,area,rho,itp)
+%   [k,m] = = febeam3(el,sh,leng,heig,width,rho)
 %
 % Variable Description:
 %   k = element stiffness matrix (size of 4x4)
 %   m = element mass matrix (size of 4x4)
 %   el = elastic modulus
-%   xi = second moment of inertia of cross-section
 %   leng = element length
-%   area = area of beam cross-section
 %   rho = mass density (mass per unit volume)
 %   sh = shear modulus
-%   ipt = 1: consistent mass matrix
-%         2: lumped mass matrix
-%         ohterwise: diagonal mass matrix
+%   heig - element thickness
+%   width - width of the beam element
 %________________________________________________________________________
 
 % stiffness matrix
