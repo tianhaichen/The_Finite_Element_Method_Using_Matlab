@@ -43,7 +43,7 @@ m24 = -3*leng^2;
 m = mm*[m11 m12 m13 m14;
         m12 m22 -m14 m24;
         m13 -m14 m11 -m12;
-        m14 m22 -m12 m22];
+        m14 m24 -m12 m22];
 %
 % lumper mass matrix
 elseif ipt ==2

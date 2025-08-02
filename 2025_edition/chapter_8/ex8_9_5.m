@@ -1,0 +1,86 @@
+%-----------------------------------------------------------------------
+% Example 8.9.5
+% to solve a static beam deflection for a 2-d frame using elements
+%
+% Problem description
+%    Find the deflection of a frame of L-shape which is made of two beams     %
+%   of lengths of 60 in. and 20 in., respectively. Both beams have           %
+%   cross-sections of 2 in. height by 1 in. width. The elastic modulus       %
+%   is 30x10^6 psi. The frame is subjected to a concenterated load of        %
+%   60 lb at the end of the smaller beam and one end of the long member      %
+%   is fixed. Use 7 elements to find the deflection of the frame.            %   
+%   (see Fig. 8.9.2 for the element discretization)
+%
+% Variable descriptions
+%   x and y = global x and y coordinates of each node
+%   k = element stiffness matrix
+%   kk = system stiffness matrix
+%   ff = system force vector
+%   index = a vector containing system dofs associated with each element
+%   bcdof = a vector containing dofs associted with boundary conditions
+%   bcval = a vector containing boundary condition values associated with
+%           the dofs in 'bcdof'
+%----------------------------------------------------------------------------
+addpath(genpath('D:\The_Finite_Element_Method_Using_Matlab\2025_edition'));
+clc
+clear
+nel = 6;                % number of elements
+nnel = 2;               % number of nodes per element
+ndof = 3;               % number of dofs per node
+nnode = (nnel-1)*nel+1; % total number of nodes in system
+sdof = nnode*ndof;      % total system dofs
+coord=[0 0;             % x,y coord values of node in terms of the global axis
+    0 15;
+    0 30;
+    0 45;
+    0 60;
+    10 60;
+    20 60];
+x = coord(:,1);
+y = coord(:,2);
+
+el = 3*10^7;              % elastic modulus
+xi = 2/3;                % moment of inertia of cross-section
+leng = 10/nel;          % element length of equal size
+area = 2;               % cross-sectional area of the beam
+rho = 1;                % mass density 
+ipt = 1;                % option for mass matrix (not used for static analysis)
+
+bcdof = [1 2 3];             % first,12th dof is constrained
+bcval = [0 0 0];              % value is 0
+
+ff = zeros(sdof,1);     % initialization of system force vector
+kk = zeros(sdof,sdof);  % initialization of system matrix 
+index = zeros(nnel*ndof,1); %initialization of index vector
+ff(20) = -60;            % because a half of the load is applied due to symmetry
+
+for iel = 1:nel
+    index = feeldof1(iel,nnel,ndof);    % extract system dofs associated with element
+    node1 = iel;                        % starting node number for element 'iel'
+    node2 = iel+1;                      % ending node number for element'iel
+    x1=x(node1);
+    y1=y(node1);
+    x2=x(node2);
+    y2=y(node2);
+    leng = sqrt((x2-x1)^2+(y2-y1)^2);
+    if(x2-x1)==0
+        if y2>y1
+            beta=pi/2;
+        else
+            beta=-pi/2;
+        end
+    else
+        beta=atan((y2-y1)/(x2-x1));
+    end
+    k = feframe2(el,xi,leng,area,rho,beta,1);   % compute element stiffness matrix
+    kk=feasmbl1(kk,k,index);
+end
+
+[kk,ff] = feaplyc2(kk,ff,bcdof,bcval); % apply the boundary conditions
+
+fsol = kk\ff;   % solve the matrix equation
+
+
+% print both exact and fem solutions
+num=1:1:sdof;
+store = [num' fsol]

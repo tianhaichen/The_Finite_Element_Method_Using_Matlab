@@ -20,7 +20,7 @@
 %   bcval = a vector containing boundary condition values associated with    %
 %           the dofs in 'bcdof'                                              %
 %----------------------------------------------------------------------------%            
-
+clc
 clear
 nel=4;           % number of elements
 nnel=2;          % number of nodes per element
@@ -44,7 +44,7 @@ for iel=1:nel    % loop for the total number of elements
 
 index=feeldof1(iel,nnel,ndof);  % extract system dofs associated with element
 
-[k,m]=febeam1(el,xi,leng,area,rho,1); % compute element stiffness & mass matrix
+[k,m]=febeam1(el,xi,leng,area,rho,1) % compute element stiffness & mass matrix
 
 kk=feasmbl1(kk,k,index); % assemble element stiffness matrices into system matrix
 
